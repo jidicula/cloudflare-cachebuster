@@ -41,8 +41,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     needs: test
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
           go-version: '1.20'
