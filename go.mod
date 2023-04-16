@@ -1,3 +1,3 @@
-module github.com/jidicula/template-go
+module github.com/jidicula/cloudflare-cachebuster
 
-go 1.17
+go 1.20
