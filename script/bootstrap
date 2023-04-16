@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if ! [[ $(type func) ]]; then
+	npm install -g azure-functions-core-tools@4 --unsafe-perm true
+fi

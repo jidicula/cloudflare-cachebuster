@@ -1,0 +1,26 @@
+on:
+  push:
+    branches: [main]
+
+name: Deploy
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: Build
+    uses: jidicula/cloudflare-cachebuster/.github/workflows/build.yml@main
+  deploy:
+    name: Deploy to Azure Functions
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+      - name: 'Deploy to Azure'
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ vars.AZURE_FUNCTIONAPP_NAME }}

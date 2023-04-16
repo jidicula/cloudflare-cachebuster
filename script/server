@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+script/update
+script/build
+
+func start
