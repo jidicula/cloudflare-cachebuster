@@ -2,7 +2,7 @@
 
 # cloudflare-cachebuster
 
-Azure Function that calls Cloudflares [`purge_cache`](https://developers.cloudflare.com/api/operations/zone-purge) endpoint.
+Azure Function that calls Cloudflare's [`purge_cache`](https://developers.cloudflare.com/api/operations/zone-purge) endpoint.
 
 Requires 2 environment variables to be set:
 * `CLOUDFLARE_ZONEID`: the Zone ID of the cache being purged.
