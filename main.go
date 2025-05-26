@@ -60,7 +60,12 @@ func purgeCacheHandler(w http.ResponseWriter, r *http.Request) {
 		httpError(w, err, "error sending POST request", http.StatusInternalServerError)
 		return
 	}
-	defer cloudflareResp.Body.Close()
+	defer func() {
+		err := cloudflareResp.Body.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
+	}()
 
 	// Pass cloudflare response to caller
 
