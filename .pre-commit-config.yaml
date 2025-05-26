@@ -9,6 +9,6 @@ repos:
       - id: mixed-line-ending
       - id: check-added-large-files
   - repo: https://github.com/golangci/golangci-lint
-    rev: v1.38.0
+    rev: v2.1.6
     hooks:
       - id: golangci-lint
