@@ -31,9 +31,9 @@ jobs:
         uses: azure/login@v2
         with:
           # See https://github.com/Azure/functions-action/blob/1d9af80a9ec3e1afcb5537ebc5505a936a5d4585/README.md#use-oidc-recommended
-          client-id: ${{ vars.AZURE_CLIENT_ID }} # Required for OIDC login
-          tenant-id: ${{ vars.AZURE_TENANT_ID }} # Required for OIDC login
-          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }} # Required for OIDC login
+          client-id: ${{ secrets.AZURE_CLIENT_ID }} # Required for OIDC login
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }} # Required for OIDC login
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} # Required for OIDC login
       - name: 'Deploy Azure Function'
         uses: Azure/functions-action@v1
         with:
