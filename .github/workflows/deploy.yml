@@ -12,11 +12,10 @@ jobs:
   deploy:
     name: Deploy to Azure Functions
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
-      - name: 'Login via Azure CLI'
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
       - uses: actions/checkout@v5
       - uses: actions/setup-go@v6
         with:
@@ -28,7 +27,14 @@ jobs:
           GOARCH: amd64
         run: |
           script/build
-      - name: 'Deploy to Azure'
+      - name: 'Login via Azure CLI'
+        uses: azure/login@v2
+        with:
+          # See https://github.com/Azure/functions-action/blob/1d9af80a9ec3e1afcb5537ebc5505a936a5d4585/README.md#use-oidc-recommended
+          client-id: ${{ vars.AZURE_CLIENT_ID }} # Required for OIDC login
+          tenant-id: ${{ vars.AZURE_TENANT_ID }} # Required for OIDC login
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }} # Required for OIDC login
+      - name: 'Deploy Azure Function'
         uses: Azure/functions-action@v1
         with:
           app-name: ${{ vars.AZURE_FUNCTIONAPP_NAME }}
