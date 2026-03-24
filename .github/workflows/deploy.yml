@@ -28,7 +28,7 @@ jobs:
         run: |
           script/build
       - name: 'Login via Azure CLI'
-        uses: azure/login@v2
+        uses: azure/login@v3
         with:
           # See https://github.com/Azure/functions-action/blob/1d9af80a9ec3e1afcb5537ebc5505a936a5d4585/README.md#use-oidc-recommended
           client-id: ${{ secrets.AZURE_CLIENT_ID }} # Required for OIDC login
